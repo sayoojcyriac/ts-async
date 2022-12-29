@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const index = "index";
 
@@ -14,8 +15,29 @@ module.exports = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
     ],
   },
+
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "[name].bundle.css",
+    }),
+  ],
 
   resolve: {
     extensions: [".ts", ".js"],
