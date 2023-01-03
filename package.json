@@ -6,8 +6,9 @@
   "scripts": {
     "build": "tsc --build",
     "webpack": "webpack",
-    "dev": "webpack serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run backend\" \"webpack serve\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "json-server --watch ./json-server/db.json --routes ./json-server/routes.json --port 8081 --middlewares ./node_modules/json-server-reset --delay 500"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,10 @@
   "homepage": "https://github.com/sayoojcyriac/ts-async#readme",
   "devDependencies": {
     "bulma": "^0.9.4",
+    "concurrently": "^7.6.0",
     "css-loader": "^6.7.3",
+    "json-server": "^0.17.1",
+    "json-server-reset": "^1.5.0",
     "mini-css-extract-plugin": "^2.7.2",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
@@ -31,5 +35,8 @@
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "axios": "^1.2.2"
   }
 }
