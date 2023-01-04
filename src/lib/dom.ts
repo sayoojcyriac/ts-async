@@ -38,6 +38,20 @@ export function showFetching(selector: string) {
   heroPlaceHolder.replaceWith(progressClone);
 }
 
+export function showFetching2(show: boolean = true) {
+  if (show) {
+    clearList();
+  }
+  document.getElementById("progress").style.display = show ? "block" : "none";
+}
+
+export function clearList() {
+  const heroPlaceholder = document.querySelector(".hero-list");
+  const div = createDiv("hero-list");
+  div.innerText = "";
+  heroPlaceholder.replaceWith(div);
+}
+
 export function cloneElementsFromTemplate(templateName: string) {
   const template = document.getElementById(templateName) as HTMLTemplateElement;
   const clone = document.importNode(template.content, true);
